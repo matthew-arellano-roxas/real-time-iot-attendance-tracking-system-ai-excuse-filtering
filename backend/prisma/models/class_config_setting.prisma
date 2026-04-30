@@ -1,0 +1,20 @@
+model ClassConfigSetting {
+    id                    Int      @id @default(autoincrement())
+    classId               Int      @unique
+    class                 Class    @relation(fields: [classId], references: [id])
+    absencesBeforeWarning Int
+    gracePeriodMins       Int
+    mode                  Mode
+    allowExcuseSubmission Boolean
+    excuseDeadlineHours   DateTime
+    requireAttachment     Boolean
+    autoApproveExcuse     Boolean
+    aiVerdict             Boolean
+
+    @@map("class_config_settings")
+}
+
+enum Mode {
+    IN_ONLY
+    IN_AND_OUT
+}

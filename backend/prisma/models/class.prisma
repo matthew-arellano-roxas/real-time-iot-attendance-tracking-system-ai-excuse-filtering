@@ -1,0 +1,28 @@
+model Class {
+    id          Int         @id @default(autoincrement())
+    name        String
+    allow_joins Boolean
+    join_code   String?     @unique
+    schoolYear  String
+    status      ClassStatus
+    createdAt   DateTime    @default(now())
+    educatorId  Int
+    educator    User        @relation(fields: [educatorId], references: [id])
+
+    students           Student[]
+    classConfigSetting ClassConfigSetting?
+    excuseRequests     ExcuseRequest[]
+    attendanceLogs     AttendanceLog[]
+    classSchedules     ClassSchedule[]
+
+    @@index([educatorId])
+    @@map("classes")
+}
+
+enum ClassStatus {
+    ACTIVE
+    INACTIVE
+    ARCHIVED
+    SUSPENDED
+    COMPLETED
+}

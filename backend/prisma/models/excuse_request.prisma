@@ -1,0 +1,17 @@
+model ExcuseRequest {
+    id          Int      @id @default(autoincrement())
+    fileUrl     String   @unique
+    name        String
+    studentId   Int
+    student     Student  @relation(fields: [studentId], references: [id])
+    classId     Int
+    class       Class    @relation(fields: [classId], references: [id])
+    submittedAt DateTime
+    status      String
+    reviewed_by String
+    reviewedAt  DateTime
+
+    @@index([classId, studentId, submittedAt])
+    @@index([classId, submittedAt])
+    @@map("excuse_requests")
+}

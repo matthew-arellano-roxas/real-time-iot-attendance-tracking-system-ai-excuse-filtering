@@ -1,0 +1,26 @@
+model AttendanceLog {
+    id              Int              @id @default(autoincrement())
+    studentId       Int
+    student         Student          @relation(fields: [studentId], references: [id])
+    classId         Int
+    class           Class            @relation(fields: [classId], references: [id])
+    deviceId        Int
+    device          Device           @relation(fields: [deviceId], references: [id])
+    classScheduleId Int
+    classSchedule   ClassSchedule    @relation(fields: [classScheduleId], references: [id])
+    status          AttendanceStatus
+    timeIn          DateTime         @default(now())
+    timeOut         DateTime?
+    createdAt       DateTime         @default(now())
+
+    @@index([studentId])
+    @@index([classId, classScheduleId, createdAt, deviceId])
+    @@map("attendance_logs")
+}
+
+enum AttendanceStatus {
+    PRESENT
+    ABSENT
+    LATE
+    EXCUSED
+}

@@ -1,0 +1,14 @@
+model Student {
+    id      Int      @id @default(autoincrement())
+    userId  Int
+    user    User     @relation(fields: [userId], references: [id])
+    classId Int
+    class   Class    @relation(fields: [classId], references: [id])
+    date    DateTime
+
+    excuseRequests ExcuseRequest[]
+    attendanceLogs AttendanceLog[]
+
+    @@index([classId, userId])
+    @@map("students")
+}

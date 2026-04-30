@@ -1,0 +1,12 @@
+model DeviceLog {
+    id         Int          @id @default(autoincrement())
+    deviceId   Int
+    device     Device       @relation(fields: [deviceId], references: [id])
+    eventType  String
+    occurredAt DateTime
+    status     DeviceStatus
+
+    @@index([deviceId])
+    @@index([occurredAt, eventType, deviceId])
+    @@map("device_logs")
+}

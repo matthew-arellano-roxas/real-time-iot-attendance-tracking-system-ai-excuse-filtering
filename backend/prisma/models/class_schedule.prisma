@@ -1,0 +1,16 @@
+model ClassSchedule {
+    id        Int      @id @default(autoincrement())
+    classId   Int
+    class     Class    @relation(fields: [classId], references: [id])
+    name      String
+    startTime DateTime
+    endTime   DateTime
+    createdAt DateTime @default(now())
+    deviceId  Int
+    device    Device   @relation(fields: [deviceId], references: [id])
+
+    attendanceLogs AttendanceLog[]
+
+    @@index([classId, startTime, deviceId])
+    @@map("class_schedules")
+}

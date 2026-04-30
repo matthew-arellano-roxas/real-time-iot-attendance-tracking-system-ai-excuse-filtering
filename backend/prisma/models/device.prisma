@@ -1,0 +1,27 @@
+model Device {
+    id              Int          @id @default(autoincrement())
+    name            String
+    macAddress      String
+    firmwareVersion String
+    ownerId         Int
+    owner           User         @relation(fields: [ownerId], references: [id])
+    status          DeviceStatus
+    createdAt       DateTime     @default(now())
+
+    attendanceLogs AttendanceLog[]
+    classSchedules ClassSchedule[]
+    deviceLogs     DeviceLog[]
+
+    @@index([ownerId])
+    @@map("devices")
+}
+
+enum DeviceStatus {
+    PENDING
+    PAIRING
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+    REVOKED
+    OFFLINE
+}

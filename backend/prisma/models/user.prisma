@@ -1,0 +1,32 @@
+model User {
+    id    Int    @id @default(autoincrement())
+    email String @unique
+    name  String
+
+    avatarUrl String?
+
+    oauthProvider   OAuthProvider
+    oauthProviderId String        @unique
+
+    planId Int
+    plan   Plan @relation(fields: [planId], references: [id])
+
+    roleId Int
+    role   Role @relation(fields: [roleId], references: [id])
+
+    createdAt DateTime @default(now())
+
+    students Student[]
+    Classes  Class[]
+    devices  Device[]
+
+    @@index([planId])
+    @@index([roleId])
+    @@map("users")
+}
+
+enum OAuthProvider {
+    GOOGLE
+    GITHUB
+    FACEBOOK
+}

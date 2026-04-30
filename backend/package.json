@@ -1,0 +1,59 @@
+{
+  "name": "real-time-iot-attendance-tracking-system-ai-excuse-filtering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc && tsc-alias",
+    "dev": "nodemon",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prisma:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "dotenv -e .env.production -- npx prisma migrate deploy",
+    "prisma:reset": "dotenv -e .env.production -- npx prisma migrate reset",
+    "postinstall": "prisma generate"
+  },
+  "keywords": [],
+  "author": "Matthew Roxas",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@tsconfig/node20": "^20.1.9",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.19.0",
+    "@types/node": "^25.6.0",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.17",
+    "@types/pg": "^8.20.0",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.7.4",
+    "prisma": "^7.8.0",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.20.0"
+  },
+  "overrides": {
+    "@hono/node-server": "^1.19.13"
+  }
+}
