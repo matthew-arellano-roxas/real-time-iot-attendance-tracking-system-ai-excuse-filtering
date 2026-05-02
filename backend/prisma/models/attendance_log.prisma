@@ -4,8 +4,8 @@ model AttendanceLog {
     student         Student          @relation(fields: [studentId], references: [id])
     classId         Int
     class           Class            @relation(fields: [classId], references: [id])
-    deviceId        Int
-    device          Device           @relation(fields: [deviceId], references: [id])
+    deviceId        Int?
+    device          Device?          @relation(fields: [deviceId], references: [id])
     classScheduleId Int
     classSchedule   ClassSchedule    @relation(fields: [classScheduleId], references: [id])
     status          AttendanceStatus

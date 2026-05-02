@@ -6,8 +6,8 @@ model ClassSchedule {
     startTime DateTime
     endTime   DateTime
     createdAt DateTime @default(now())
-    deviceId  Int
-    device    Device   @relation(fields: [deviceId], references: [id])
+    deviceId  Int?
+    device    Device?  @relation(fields: [deviceId], references: [id])
 
     attendanceLogs AttendanceLog[]
 
