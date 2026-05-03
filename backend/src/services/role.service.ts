@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Role } from '@root/generated/prisma/enums';
-import { AppError, StatusCode } from '@/errors';
+import { ForbiddenError, NotFoundError } from '@/errors';
 
 export interface RoleService {
   checkEducator: (educatorId: number, role?: Role) => Promise<void>;
@@ -9,7 +9,7 @@ export interface RoleService {
 export function getRoleService(prisma: PrismaClient): RoleService {
   const checkEducator = async function (educatorId: number, role?: Role) {
     if (isEducator(role)) {
-      throw new AppError('Unauthorized', StatusCode.UNAUTHORIZED);
+      throw new ForbiddenError('Action not permitted');
     }
 
     const user = await prisma.user.findUnique({
@@ -18,11 +18,11 @@ export function getRoleService(prisma: PrismaClient): RoleService {
     });
 
     if (user === null) {
-      throw new AppError('User not found', StatusCode.UNAUTHORIZED);
+      throw new NotFoundError('User not found');
     }
 
     if (user.role !== Role.EDUCATOR) {
-      throw new AppError('Unauthorized', StatusCode.UNAUTHORIZED);
+      throw new ForbiddenError('Action not permitted');
     }
   };
 

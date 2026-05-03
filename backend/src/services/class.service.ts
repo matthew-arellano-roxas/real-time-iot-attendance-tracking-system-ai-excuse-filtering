@@ -1,12 +1,11 @@
 import { ClassDTO } from '@/types/DTOs';
 import { Class, PrismaClient } from '@prisma/client';
 import { generateCode } from '@/helpers/generateCode';
-import { AppError } from '@/errors/AppError';
-import { StatusCode } from '@/errors/StatusCode';
 import { ClassWhereInput } from '@root/generated/prisma/models';
 import { getPagination } from '@/helpers/getPagination';
 import { Role } from '@root/generated/prisma/enums';
 import { RoleService } from '@/services';
+import { NotFoundError } from '@/errors';
 
 export interface ClassService {
   createClass: (educatorId: number, payload: ClassDTO) => Promise<Class>;
@@ -82,7 +81,7 @@ export const getClassService = function (
     });
 
     if (!existing) {
-      throw new AppError('Class not found', StatusCode.NOT_FOUND);
+      throw new NotFoundError('Class not found');
     }
 
     return prisma.class.update({
@@ -97,7 +96,7 @@ export const getClassService = function (
     });
 
     if (!existing) {
-      throw new AppError('Class not found', StatusCode.NOT_FOUND);
+      throw new NotFoundError('Class not found');
     }
 
     return prisma.class.delete({
@@ -111,7 +110,7 @@ export const getClassService = function (
     });
 
     if (!classEntry) {
-      throw new AppError('Class not found', StatusCode.NOT_FOUND);
+      throw new NotFoundError('Class not found');
     }
 
     return classEntry;

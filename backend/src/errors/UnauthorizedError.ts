@@ -2,7 +2,7 @@ import { AppError } from './AppError';
 import { StatusCode } from './StatusCode';
 
 export class UnauthorizedError extends AppError {
-  constructor(message = 'Resource not found') {
+  constructor(message = '401 Unauthorized') {
     super(message, StatusCode.UNAUTHORIZED);
   }
 }
