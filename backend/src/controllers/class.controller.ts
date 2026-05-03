@@ -10,8 +10,9 @@ import {
 } from '@/types/requests';
 import { NextFunction, Response } from 'express';
 import { type ClassController } from '@/types/controllers';
+import { assertAuth } from '@/helpers/assertAuth';
 
-export function createClassService(
+export function createClassController(
   classService: ClassService,
 ): ClassController {
   const createClass = async function (
@@ -19,6 +20,7 @@ export function createClassService(
     res: Response,
     _next: NextFunction,
   ): Promise<void> {
+    assertAuth(req);
     const { sub: educatorId } = req.user;
     const payload = req.body;
 

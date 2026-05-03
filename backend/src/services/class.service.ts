@@ -4,7 +4,7 @@ import { generateCode } from '@/helpers/generateCode';
 import { ClassWhereInput } from '@root/generated/prisma/models';
 import { getPagination } from '@/helpers/getPagination';
 import { Role } from '@root/generated/prisma/enums';
-import { RoleService } from '@/services';
+import { type RoleService } from '@/types/services';
 import { NotFoundError } from '@/errors';
 import { ClassListQuery } from '@/types';
 import { type ClassService } from '@/types/services';

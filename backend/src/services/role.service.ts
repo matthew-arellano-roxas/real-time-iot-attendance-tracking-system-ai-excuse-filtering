@@ -1,10 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Role } from '@root/generated/prisma/enums';
 import { ForbiddenError, NotFoundError } from '@/errors';
-
-export interface RoleService {
-  checkEducator: (educatorId: number, role?: Role) => Promise<void>;
-}
+import { RoleService } from '@/types/services';
 
 export function getRoleService(prisma: PrismaClient): RoleService {
   const checkEducator = async function (educatorId: number, role?: Role) {
