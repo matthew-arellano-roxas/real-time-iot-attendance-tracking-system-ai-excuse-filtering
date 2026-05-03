@@ -1,3 +1,4 @@
+import { sendResponse } from '@/helpers/sendResponse';
 import { ClassService } from '@/services/class.service';
 import { AuthRequest } from '@/types';
 import { CreateClassRequest } from '@/types/DTOs/class.dto';
@@ -22,7 +23,7 @@ export function getClassController(classService: ClassService) {
     const payload = req.body;
 
     const classEntry = await classService.createClass(educatorId, payload);
-    res.json(classEntry);
+    sendResponse(res, classEntry);
   };
 
   return {
