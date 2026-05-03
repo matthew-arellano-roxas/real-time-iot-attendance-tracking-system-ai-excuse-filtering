@@ -3,25 +3,19 @@ model User {
     email String @unique
     name  String
 
-    avatarUrl String?
+    avatarUrl String? @map("avatar_url")
 
-    oauthProvider   OAuthProvider
-    oauthProviderId String        @unique
+    oauthProvider   OAuthProvider @map("oauth_provider")
+    oauthProviderId String        @unique @map("oauth_provider_id")
+    role            Role
 
-    planId Int
-    plan   Plan @relation(fields: [planId], references: [id])
-
-    roleId Int
-    role   Role @relation(fields: [roleId], references: [id])
-
-    createdAt DateTime @default(now())
+    createdAt DateTime @default(now()) @map("created_at")
 
     students Student[]
-    Classes  Class[]
+    classes  Class[]
     devices  Device[]
 
-    @@index([planId])
-    @@index([roleId])
+    @@index([oauthProviderId])
     @@map("users")
 }
 
@@ -29,4 +23,10 @@ enum OAuthProvider {
     GOOGLE
     GITHUB
     FACEBOOK
+}
+
+enum Role {
+    ADMIN
+    EDUCATOR
+    STUDENT
 }

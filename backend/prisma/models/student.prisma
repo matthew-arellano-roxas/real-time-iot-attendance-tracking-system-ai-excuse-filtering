@@ -1,8 +1,8 @@
 model Student {
     id      Int      @id @default(autoincrement())
-    userId  Int
+    userId  Int      @map("user_id")
     user    User     @relation(fields: [userId], references: [id])
-    classId Int
+    classId Int      @map("class_id")
     class   Class    @relation(fields: [classId], references: [id])
     date    DateTime
 

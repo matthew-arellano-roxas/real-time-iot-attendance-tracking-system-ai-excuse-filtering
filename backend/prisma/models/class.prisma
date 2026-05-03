@@ -1,13 +1,13 @@
 model Class {
-    id          Int         @id @default(autoincrement())
-    name        String
-    allow_joins Boolean
-    join_code   String?     @unique
-    schoolYear  String
-    status      ClassStatus
-    createdAt   DateTime    @default(now())
-    educatorId  Int
-    educator    User        @relation(fields: [educatorId], references: [id])
+    id         Int         @id @default(autoincrement())
+    name       String
+    allowJoins Boolean     @map("allow_joins")
+    joinCode   String?     @unique @map("join_code")
+    schoolYear String      @map("school_year")
+    status     ClassStatus
+    createdAt  DateTime    @default(now()) @map("created_at")
+    educatorId Int         @map("educator_id")
+    educator   User        @relation(fields: [educatorId], references: [id])
 
     students           Student[]
     classConfigSetting ClassConfigSetting?

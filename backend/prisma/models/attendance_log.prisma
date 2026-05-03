@@ -1,17 +1,17 @@
 model AttendanceLog {
     id              Int              @id @default(autoincrement())
-    studentId       Int
+    studentId       Int              @map("student_id")
     student         Student          @relation(fields: [studentId], references: [id])
-    classId         Int
+    classId         Int              @map("class_id")
     class           Class            @relation(fields: [classId], references: [id])
-    deviceId        Int?
+    deviceId        Int?             @map("device_id")
     device          Device?          @relation(fields: [deviceId], references: [id])
-    classScheduleId Int
+    classScheduleId Int              @map("class_schedule_id")
     classSchedule   ClassSchedule    @relation(fields: [classScheduleId], references: [id])
     status          AttendanceStatus
-    timeIn          DateTime         @default(now())
-    timeOut         DateTime?
-    createdAt       DateTime         @default(now())
+    timeIn          DateTime         @default(now()) @map("time_in")
+    timeOut         DateTime?        @map("time_out")
+    createdAt       DateTime         @default(now()) @map("created_at")
 
     @@index([studentId])
     @@index([classId, classScheduleId, createdAt, deviceId])

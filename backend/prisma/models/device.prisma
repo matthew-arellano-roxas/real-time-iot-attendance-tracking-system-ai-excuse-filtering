@@ -1,12 +1,12 @@
 model Device {
     id              Int          @id @default(autoincrement())
     name            String
-    macAddress      String
-    firmwareVersion String
-    ownerId         Int
+    macAddress      String       @map("mac_address")
+    firmwareVersion String       @map("firmware_version")
+    ownerId         Int          @map("owner_id")
     owner           User         @relation(fields: [ownerId], references: [id])
     status          DeviceStatus
-    createdAt       DateTime     @default(now())
+    createdAt       DateTime     @default(now()) @map("created_at")
 
     attendanceLogs AttendanceLog[]
     classSchedules ClassSchedule[]

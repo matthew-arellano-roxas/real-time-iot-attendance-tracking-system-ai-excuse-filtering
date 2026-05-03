@@ -1,31 +1,31 @@
-enum PlanType {
-    ONE_TIME
-    DAILY
-    MONTHLY
-    YEARLY
-    QUARTERLY
-    HALF_YEARLY
-    ANNUALLY
-}
+// enum PlanType {
+//     ONE_TIME
+//     DAILY
+//     MONTHLY
+//     YEARLY
+//     QUARTERLY
+//     HALF_YEARLY
+//     ANNUALLY
+// }
 
-enum PlanStatus {
-    ACTIVE
-    INACTIVE
-    DEPRECATED
-}
+// enum PlanStatus {
+//     ACTIVE
+//     INACTIVE
+//     DEPRECATED
+// }
 
-model Plan {
-    id               Int        @id @default(autoincrement())
-    name             String
-    price            Float
-    planType         PlanType
-    billing_interval String
-    status           PlanStatus
-    createdAt        DateTime   @default(now())
-    description      String
-    updatedAt        DateTime   @updatedAt
+// model Plan {
+//     id               Int        @id @default(autoincrement())
+//     name             String
+//     price            Float
+//     planType         PlanType
+//     billing_interval String
+//     status           PlanStatus
+//     createdAt        DateTime   @default(now())
+//     description      String
+//     updatedAt        DateTime   @updatedAt
 
-    users User[]
+//     users User[]
 
-    @@map("plans")
-}
+//     @@map("plans")
+// }

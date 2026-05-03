@@ -1,9 +1,9 @@
 model DeviceLog {
     id         Int          @id @default(autoincrement())
-    deviceId   Int
+    deviceId   Int          @map("device_id")
     device     Device       @relation(fields: [deviceId], references: [id])
-    eventType  String
-    occurredAt DateTime
+    eventType  String       @map("event_type")
+    occurredAt DateTime     @map("occurred_at")
     status     DeviceStatus
 
     @@index([deviceId])

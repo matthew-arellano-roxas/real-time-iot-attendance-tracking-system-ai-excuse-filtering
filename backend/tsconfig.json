@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "paths": {
@@ -10,6 +10,6 @@
       "@root/*": ["./*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "lib/**/*.ts", "generated/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,15 +1,15 @@
 model ClassConfigSetting {
     id                    Int      @id @default(autoincrement())
-    classId               Int      @unique
+    classId               Int      @unique @map("class_id")
     class                 Class    @relation(fields: [classId], references: [id])
-    absencesBeforeWarning Int
-    gracePeriodMins       Int
+    absencesBeforeWarning Int      @map("absences_before_warning")
+    gracePeriodMins       Int      @map("grace_period_mins")
     mode                  Mode
-    allowExcuseSubmission Boolean
-    excuseDeadlineHours   DateTime
-    requireAttachment     Boolean
-    autoApproveExcuse     Boolean
-    aiVerdict             Boolean
+    allowExcuseSubmission Boolean  @map("allow_excuse_submission")
+    excuseDeadlineHours   DateTime @map("excuse_deadline_hours")
+    requireAttachment     Boolean  @map("require_attachment")
+    autoApproveExcuse     Boolean  @map("auto_approve_excuse")
+    aiVerdict             Boolean  @map("ai_verdict")
 
     @@map("class_config_settings")
 }

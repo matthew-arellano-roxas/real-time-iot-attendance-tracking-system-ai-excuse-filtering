@@ -1,15 +1,15 @@
 model ExcuseRequest {
     id          Int      @id @default(autoincrement())
-    fileUrl     String   @unique
+    fileUrl     String   @unique @map("file_url")
     name        String
-    studentId   Int
+    studentId   Int      @map("student_id")
     student     Student  @relation(fields: [studentId], references: [id])
-    classId     Int
+    classId     Int      @map("class_id")
     class       Class    @relation(fields: [classId], references: [id])
-    submittedAt DateTime
+    submittedAt DateTime @map("submitted_at")
     status      String
-    reviewed_by String
-    reviewedAt  DateTime
+    reviewedBy  String   @map("reviewed_by")
+    reviewedAt  DateTime @map("reviewed_at")
 
     @@index([classId, studentId, submittedAt])
     @@index([classId, submittedAt])

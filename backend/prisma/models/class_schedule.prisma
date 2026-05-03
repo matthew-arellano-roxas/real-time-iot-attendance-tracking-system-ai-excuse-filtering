@@ -1,12 +1,12 @@
 model ClassSchedule {
     id        Int      @id @default(autoincrement())
-    classId   Int
+    classId   Int      @map("class_id")
     class     Class    @relation(fields: [classId], references: [id])
     name      String
-    startTime DateTime
-    endTime   DateTime
-    createdAt DateTime @default(now())
-    deviceId  Int?
+    startTime DateTime @map("start_time")
+    endTime   DateTime @map("end_time")
+    createdAt DateTime @default(now()) @map("created_at")
+    deviceId  Int?     @map("device_id")
     device    Device?  @relation(fields: [deviceId], references: [id])
 
     attendanceLogs AttendanceLog[]
