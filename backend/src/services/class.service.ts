@@ -1,42 +1,21 @@
-import { ClassDTO } from '@/types/DTOs';
-import { Class, PrismaClient } from '@prisma/client';
+import { CreateClassRequestDTO, UpdateClassRequestDTO } from '@/types/dtos';
+import { PrismaClient } from '@prisma/client';
 import { generateCode } from '@/helpers/generateCode';
 import { ClassWhereInput } from '@root/generated/prisma/models';
 import { getPagination } from '@/helpers/getPagination';
 import { Role } from '@root/generated/prisma/enums';
 import { RoleService } from '@/services';
 import { NotFoundError } from '@/errors';
+import { ClassListQuery } from '@/types';
+import { type ClassService } from '@/types/services';
 
-export interface ClassService {
-  createClass: (educatorId: number, payload: ClassDTO) => Promise<Class>;
-  updateClass: (classId: number, payload: Partial<ClassDTO>) => Promise<Class>;
-  deleteClass: (classId: number) => Promise<Class>;
-  getClassById: (classId: number) => Promise<Class | null>;
-  getEducatorClassList: (
-    educatorId: number,
-    query: ClassListQuery,
-  ) => Promise<Class[]>;
-  getStudentClassList: (
-    studentId: number,
-    query: ClassListQuery,
-  ) => Promise<Class[]>;
-}
-
-interface ClassListQuery {
-  page?: number;
-  limit?: number;
-  name?: string;
-  schoolYear?: string;
-  educatorId?: number;
-}
-
-export const getClassService = function (
+export const createClassService = function (
   prisma: PrismaClient,
   roleService: RoleService,
 ): ClassService {
   const createClass = async function (
     educatorId: number,
-    payload: ClassDTO,
+    payload: CreateClassRequestDTO,
     role?: Role,
   ) {
     roleService.checkEducator(educatorId, role);
@@ -74,7 +53,7 @@ export const getClassService = function (
 
   const updateClass = async function (
     classId: number,
-    payload: Partial<ClassDTO>,
+    payload: UpdateClassRequestDTO,
   ) {
     const existing = await prisma.class.findUnique({
       where: { id: classId },

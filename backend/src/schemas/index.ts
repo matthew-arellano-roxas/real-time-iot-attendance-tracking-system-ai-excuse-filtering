@@ -1,1 +1,1 @@
-export { classSchema } from './class.schema';
+export { createClassSchema, updateClassSchema } from './class.schema';

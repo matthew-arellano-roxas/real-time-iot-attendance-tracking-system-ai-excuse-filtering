@@ -1,7 +1,7 @@
 import { ClassStatus } from '@prisma/client';
 import { z } from 'zod';
 
-export const classSchema = z
+export const createClassSchema = z
   .object({
     name: z
       .string()
@@ -11,3 +11,18 @@ export const classSchema = z
     status: z.enum(ClassStatus),
   })
   .strict();
+
+export const updateClassSchema = createClassSchema.partial();
+
+export const getClassQuerySchema = z.object({
+  name: z.string().optional(),
+  schoolYear: z.string().optional(),
+  status: z.enum(ClassStatus).optional(),
+  educatorId: z.number().optional(),
+  page: z.number().optional(),
+  limit: z.number().optional(),
+});
+
+export const classIdSchema = z.object({
+  classId: z.number(),
+});

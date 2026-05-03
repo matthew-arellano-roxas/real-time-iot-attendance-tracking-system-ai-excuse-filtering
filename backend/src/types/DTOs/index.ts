@@ -1,1 +1,5 @@
-export { ClassDTO } from './class.dto';
+export {
+  CreateClassRequestDTO,
+  UpdateClassRequestDTO,
+  GetClassListRequestDTO,
+} from './class.dto';

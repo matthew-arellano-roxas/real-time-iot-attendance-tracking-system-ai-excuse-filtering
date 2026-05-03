@@ -1,10 +1,15 @@
 import { Request } from 'express';
-import { classSchema } from '@/schemas';
+import { createClassSchema, updateClassSchema } from '@/schemas';
 import z from 'zod';
+import { getClassQuerySchema } from '@/schemas/class.schema';
 
-export type CreateClassRequest = Request<
-  Record<string, never>,
+export type CreateClassRequestDTO = z.infer<typeof createClassSchema>;
+
+export type UpdateClassRequest = Request<
+  { classId: number },
   unknown,
-  ClassDTO
+  UpdateClassRequestDTO
 >;
-export type ClassDTO = z.infer<typeof classSchema>;
+export type UpdateClassRequestDTO = z.infer<typeof updateClassSchema>;
+
+export type GetClassListRequestDTO = z.infer<typeof getClassQuerySchema>;
