@@ -1,5 +1,5 @@
 import { sendResponse } from '@/helpers/sendResponse';
-import { ClassService } from '@/services/class.service';
+import { ClassService } from '@/types/services';
 import { AuthRequest } from '@/types';
 import {
   CreateClassRequest,
