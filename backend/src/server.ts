@@ -6,9 +6,11 @@ import passport from 'passport';
 import { env } from '@/configs';
 import { googleStrategy } from '@/configs/strategy';
 import { authRouter } from '@/routes/auth.route';
-import { errorHandler } from './middleware/errorHandler';
+import { requestLogger, errorHandler } from '@/middleware';
 
 const app = express();
+
+app.use(requestLogger);
 
 app.use(express.json());
 app.use(passport.initialize());

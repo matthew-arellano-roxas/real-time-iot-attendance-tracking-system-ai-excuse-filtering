@@ -16,7 +16,7 @@ export function signJwt(user: User) {
   );
 }
 
-export function verifyTokenMiddleware(
+export function RequestTokenVerifier(
   req: Request,
   res: Response,
   next: NextFunction,

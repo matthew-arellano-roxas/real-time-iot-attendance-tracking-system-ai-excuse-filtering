@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import express from 'express';
 import passport from 'passport';
-import { signJwt, verifyTokenMiddleware } from '@/middleware/authMiddleware';
+import { signJwt, RequestTokenVerifier } from '@/middleware/auth.middleware';
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get(
   },
 );
 
-router.get('/protected-route', verifyTokenMiddleware, (req, res) => {
+router.get('/protected-route', RequestTokenVerifier, (req, res) => {
   res.send('Authenticated!');
 });
 
